@@ -18,12 +18,12 @@ Feature: User Registration
       | Zip Code     | 10001       |
       | Phone        | 5551234567  |
       | SSN          | 123456789   |
-      | Username     | johndoe01   |
+      | Username     | johndoe15   |
       | Password     | Test123!    |
       | Confirm      | Test123!    |
     And I click "Register" button
     Then I should see "Your account was created successfully"
-    And I should be logged in as "johndoe01"
+    And I should be logged in as "johndoe15"
 
 #  @registration @validation
 #  Scenario: Registration fails when username already exists
