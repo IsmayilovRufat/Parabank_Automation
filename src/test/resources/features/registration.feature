@@ -18,26 +18,26 @@ Feature: User Registration
       | Zip Code     | 10001       |
       | Phone        | 5551234567  |
       | SSN          | 123456789   |
-      | Username     | johndoe15   |
+      | Username     | johndoe28   |
       | Password     | Test123!    |
       | Confirm      | Test123!    |
     And I click "Register" button
     Then I should see "Your account was created successfully"
-    And I should be logged in as "johndoe15"
+    And I should be logged in as "johndoe28"
 
-#  @registration @validation
-#  Scenario: Registration fails when username already exists
-#    When I fill in registration form with existing username "john"
-#    And I click "Register" button
-#    Then I should see an error message about username already in use
-#
-#  @registration @validation
-#  Scenario: Registration fails when required fields are empty
-#    When I leave required registration fields empty
-#    And I click "Register" button
-#    Then I should see validation error messages
-#    And I should remain on the registration page
-#
+  @registration @validation
+  Scenario: Registration fails when username already exists
+    When I fill in registration form with existing username "john"
+    And I click "Register" button
+    Then I should see an error message about username already in use
+
+  @registration @validation
+  Scenario: Registration fails when required fields are empty
+    When I leave required registration fields empty
+    And I click "Register" button
+    Then I should see validation error messages
+    And I should remain on the registration page
+
 #  @registration @validation
 #  Scenario: Registration fails when password and confirm password do not match
 #    When I fill in registration form with:
