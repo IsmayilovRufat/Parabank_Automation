@@ -1,5 +1,6 @@
-package core;
+package utils;
 
+import config.ConfigReader;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,7 +13,10 @@ public class DriverManager {
         return driver;
     }
 
-    public static WebDriver createDriver(boolean headless) {
+    public static WebDriver createDriver() {
+        boolean headless = Boolean.parseBoolean(
+                ConfigReader.getProperty("headless")
+        );
         WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
         if (headless) {

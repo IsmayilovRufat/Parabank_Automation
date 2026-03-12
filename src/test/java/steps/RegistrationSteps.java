@@ -2,10 +2,10 @@ package steps;
 
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
+import utils.DriverManager;
 import pages.HomePage;
 import pages.RegistrationPage;
 import java.util.HashMap;
@@ -16,13 +16,11 @@ public class RegistrationSteps {
     private HomePage homePage;
     private RegistrationPage registrationPage;
 
-    @Given("I am on the ParaBank home page")
-    public void i_am_on_the_ParaBank_home_page() {
-        homePage = new HomePage();
-    }
-
     @And("I click \"Register\"")
     public void i_click_register() {
+        if (homePage == null) {
+            homePage = new HomePage();
+        }
         homePage.clickRegister();
     }
 
@@ -47,11 +45,11 @@ public class RegistrationSteps {
             "Expected success message to contain text, but was: " + actualMessage);
     }
 
-    @And("I should be logged in as \"johndoe28\"")
-    public void i_should_be_logged_in_as_johndoe28() {
+    @And("I should be logged in as \"johndoe29\"")
+    public void i_should_be_logged_in_as_johndoe29() {
         String welcomeMessage = registrationPage.getWelcomeMessage();
         Assert.assertTrue(
-                welcomeMessage.contains("johndoe28"),
+                welcomeMessage.contains("johndoe29"),
                 "Expected welcome message to contain text, but was: " + welcomeMessage);
     }
 
@@ -102,6 +100,17 @@ public class RegistrationSteps {
         String passwordError = registrationPage.getPasswordFieldIsEmpty();
         String confirmPasswordError = registrationPage.getConfirmPasswordFieldIsEmpty();
 
+        System.out.println("First Name: " + firstNameError);
+        System.out.println("Last Name: " + lastNameError);
+        System.out.println("Address: " + addressError);
+        System.out.println("City: " + cityError);
+        System.out.println("State: " + stateError);
+        System.out.println("Zip Code: " + zipError);
+        System.out.println("SSN: " + ssnError);
+        System.out.println("Username: " + usernameError);
+        System.out.println("Password: " + passwordError);
+        System.out.println("Confirm Password: " + confirmPasswordError);
+
         boolean anyErrorVisible =
                         !firstNameError.isBlank() ||
                         !lastNameError.isBlank() ||
@@ -122,6 +131,19 @@ public class RegistrationSteps {
 
     @And("I should remain on the registration page")
     public void i_should_remain_on_the_registration_page() {
+        Assert.assertEquals(
+                DriverManager.getDriver().getCurrentUrl(),
+                "https://parabank.parasoft.com/parabank/register.htm"
+        );
+    }
 
+    @Then("I should see \"Passwords did not match\" or similar error")
+    public void i_should_see_passwords_did_not_match_or_similar_error() {
+        String error = registrationPage.getConfirmPasswordFieldIsEmpty();
+        System.out.println("Password mismatch error: " + error);
+        Assert.assertTrue(
+            error.toLowerCase().contains("passwords did not match"),
+            "Expected password mismatch message, but was: " + error
+        );
     }
 }

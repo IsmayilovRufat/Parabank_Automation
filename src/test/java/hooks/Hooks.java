@@ -1,6 +1,7 @@
 package hooks;
 
-import core.DriverManager;
+import config.ConfigReader;
+import utils.DriverManager;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import org.openqa.selenium.WebDriver;
@@ -8,9 +9,9 @@ import org.openqa.selenium.WebDriver;
 public class Hooks {
     @Before
     public void setup() {
-        WebDriver driver = DriverManager.createDriver(true);
+        WebDriver driver = DriverManager.createDriver();
         driver.manage().window().maximize();
-        driver.get("https://parabank.parasoft.com/parabank/");
+        driver.get(ConfigReader.getProperty("url"));
     }
 
     @After

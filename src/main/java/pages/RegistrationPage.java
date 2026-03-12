@@ -1,6 +1,6 @@
 package pages;
 
-import core.DriverManager;
+import utils.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -109,5 +109,13 @@ public class RegistrationPage {
 
     public String getConfirmPasswordFieldIsEmpty() {
         return driver.findElement(confirmPasswordFieldIsEmpty).getText();
+    }
+
+    public String getPassword() {
+        return driver.findElement(password).getText();
+    }
+
+    public String getConfirmPassword() {
+        return driver.findElement(confirm_password).getText();
     }
 }

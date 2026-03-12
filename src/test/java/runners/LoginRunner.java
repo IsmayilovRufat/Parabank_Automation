@@ -1,14 +1,14 @@
 package runners;
 
+
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
-        features = "src/test/resources/features/registration.feature",
+        features = "src/test/resources/features/login.feature",
         glue = {"steps", "hooks"},
         plugin = "pretty",
         monochrome = true
-//        tags = "@validation"
 )
 
-public class RegistrationRunner extends AbstractTestNGCucumberTests {}
+public class LoginRunner extends AbstractTestNGCucumberTests {}
