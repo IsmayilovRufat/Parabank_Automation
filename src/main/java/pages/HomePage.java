@@ -1,14 +1,20 @@
 package pages;
 
-import utils.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.DriverManager;
+
+import java.time.Duration;
 
 public class HomePage {
-    private WebDriver driver;
+    private final WebDriver driver;
+    private final WebDriverWait wait;
 
     public HomePage() {
         this.driver = DriverManager.getDriver();
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     private By register = By.cssSelector("a[href='register.htm']");
@@ -37,18 +43,24 @@ public class HomePage {
     }
 
     public String getMainContentTitle() {
-        return driver.findElement(mainContentTitle).getText();
+        return wait.until(
+                ExpectedConditions.visibilityOfElementLocated(mainContentTitle)
+        ).getText();
     }
 
     public boolean isOnCustomerAccountPage() {
         if (driver.findElements(logOutLink).isEmpty()) {
             return false;
         }
-        return driver.findElement(logOutLink).isDisplayed();
+        return wait.until(
+                ExpectedConditions.visibilityOfElementLocated(logOutLink)
+        ).isDisplayed();
     }
 
     public String getErrorMessage() {
-        return driver.findElement(errorMessage).getText();
+        return wait.until(
+                ExpectedConditions.visibilityOfElementLocated(errorMessage)
+        ).getText();
     }
 
     public void clearUsername() {

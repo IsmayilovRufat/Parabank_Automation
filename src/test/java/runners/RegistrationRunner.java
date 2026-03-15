@@ -6,9 +6,11 @@ import io.cucumber.testng.CucumberOptions;
 @CucumberOptions(
         features = "src/test/resources/features/registration.feature",
         glue = {"steps", "hooks"},
-        plugin = "pretty",
+        plugin = {
+                "pretty",
+//                "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
+        },
         monochrome = true
-//        tags = "@validation"
 )
 
 public class RegistrationRunner extends AbstractTestNGCucumberTests {}

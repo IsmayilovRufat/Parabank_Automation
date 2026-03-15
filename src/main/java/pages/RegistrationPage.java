@@ -3,14 +3,20 @@ package pages;
 import utils.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.Map;
 
 public class RegistrationPage {
-    private WebDriver driver;
+    private final WebDriver driver;
+    private final WebDriverWait wait;
 
     public RegistrationPage() {
         this.driver = DriverManager.getDriver();
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     private By firstName = By.name("customer.firstName");
@@ -60,15 +66,21 @@ public class RegistrationPage {
     }
 
     public String getWelcomeMessage() {
-        return driver.findElement(welcomeMessage).getText();
+        return wait.until(
+                ExpectedConditions.visibilityOfElementLocated(welcomeMessage)
+        ).getText();
     }
 
     public String getSuccessMessage() {
-        return driver.findElement(successMessage).getText();
+        return wait.until(
+                ExpectedConditions.visibilityOfElementLocated(successMessage)
+        ).getText();
     }
 
     public String getUsernameAlreadyExistsError() {
-        return driver.findElement(usernameAlreadyExistsError).getText();
+        return wait.until(
+                ExpectedConditions.visibilityOfElementLocated(usernameAlreadyExistsError)
+        ).getText();
     }
 
     public String getFirstNameFieldIsEmpty() {
