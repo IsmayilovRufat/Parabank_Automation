@@ -140,10 +140,32 @@ public class RegistrationSteps {
     @Then("I should see \"Passwords did not match\" or similar error")
     public void i_should_see_passwords_did_not_match_or_similar_error() {
         String error = registrationPage.getConfirmPasswordFieldIsEmpty();
-        System.out.println("Password mismatch error: " + error);
         Assert.assertTrue(
             error.toLowerCase().contains("passwords did not match"),
             "Expected password mismatch message, but was: " + error
         );
+    }
+
+    @When("I fill in registration form with invalid SSN {string}")
+    public void i_fill_in_registration_form_with_invalid_ssn(String invalidSsn) {
+        registrationPage = new RegistrationPage();
+        Map<String, String> data = new HashMap<>();
+        data.put("First Name", "John");
+        data.put("Last Name", "Doe");
+        data.put("Address", "123 Main St");
+        data.put("City", "New York");
+        data.put("State", "NY");
+        data.put("Zip Code", "10001");
+        data.put("Phone", "5551234567");
+        data.put("SSN", invalidSsn);
+        data.put("Username", "john");
+        data.put("Password", "Test123!");
+        data.put("Confirm", "Test123!");
+        registrationPage.fillRegistrationForm(data);
+    }
+
+    @Then("I should see SSN validation error")
+    public void i_should_see_ssn_validation_error() {
+
     }
 }

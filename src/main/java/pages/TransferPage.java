@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 
 public class TransferPage {
 
+    private By transferFundsLink = By.cssSelector("a[href='transfer.htm']");
     private By fromAccount = By.id("fromAccountId");
     private By toAccount = By.id("toAccountId");
     private By amount = By.id("amount");

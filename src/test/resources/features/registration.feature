@@ -47,8 +47,8 @@ Feature: User Registration
     And I click "Register" button
     Then I should see "Passwords did not match" or similar error
 
-#  @registration @validation
-#  Scenario: Registration fails with invalid SSN format
-#    When I fill in registration form with invalid SSN "abc"
-#    And I click "Register" button
-#    Then I should see SSN validation error
+  @registration @validation
+  Scenario: Registration fails with invalid SSN format
+    When I fill in registration form with invalid SSN "abc"
+    And I click "Register" button
+    Then I should see SSN validation error

@@ -52,17 +52,40 @@ public class RegistrationPage {
     }
 
     public void fillRegistrationForm(Map<String, String> data) {
-        driver.findElement(firstName).sendKeys(data.get("First Name"));
-        driver.findElement(lastName).sendKeys(data.get("Last Name"));
-        driver.findElement(address).sendKeys(data.get("Address"));
-        driver.findElement(city).sendKeys(data.get("City"));
-        driver.findElement(state).sendKeys(data.get("State"));
-        driver.findElement(zipCode).sendKeys(data.get("Zip Code"));
-        driver.findElement(phone).sendKeys(data.get("Phone"));
-        driver.findElement(ssn).sendKeys(data.get("SSN"));
-        driver.findElement(username).sendKeys(data.get("Username"));
-        driver.findElement(password).sendKeys(data.get("Password"));
-        driver.findElement(confirm_password).sendKeys(data.get("Confirm"));
+        String value;
+
+        value = data.get("First Name");
+        if (value != null) driver.findElement(firstName).sendKeys(value);
+
+        value = data.get("Last Name");
+        if (value != null) driver.findElement(lastName).sendKeys(value);
+
+        value = data.get("Address");
+        if (value != null) driver.findElement(address).sendKeys(value);
+
+        value = data.get("City");
+        if (value != null) driver.findElement(city).sendKeys(value);
+
+        value = data.get("State");
+        if (value != null) driver.findElement(state).sendKeys(value);
+
+        value = data.get("Zip Code");
+        if (value != null) driver.findElement(zipCode).sendKeys(value);
+
+        value = data.get("Phone");
+        if (value != null) driver.findElement(phone).sendKeys(value);
+
+        value = data.get("SSN");
+        if (value != null) driver.findElement(ssn).sendKeys(value);
+
+        value = data.get("Username");
+        if (value != null) driver.findElement(username).sendKeys(value);
+
+        value = data.get("Password");
+        if (value != null) driver.findElement(password).sendKeys(value);
+
+        value = data.get("Confirm");
+        if (value != null) driver.findElement(confirm_password).sendKeys(value);
     }
 
     public String getWelcomeMessage() {
@@ -84,43 +107,73 @@ public class RegistrationPage {
     }
 
     public String getFirstNameFieldIsEmpty() {
-        return driver.findElement(firstNameFieldIsEmpty).getText();
+        WebElement el = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(firstNameFieldIsEmpty)
+        );
+        return el.getText();
     }
 
     public String getLastNameFieldIsEmpty() {
-        return driver.findElement(lastNameFieldIsEmpty).getText();
+        WebElement el = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(lastNameFieldIsEmpty)
+        );
+        return el.getText();
     }
 
     public String getAddressFieldIsEmpty() {
-        return driver.findElement(addressFieldIsEmpty).getText();
+        WebElement el = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(addressFieldIsEmpty)
+        );
+        return el.getText();
     }
 
     public String getCityFieldIsEmpty() {
-        return driver.findElement(cityFieldIsEmpty).getText();
+        WebElement el = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(cityFieldIsEmpty)
+        );
+        return el.getText();
     }
 
     public String getStateFieldIsEmpty() {
-        return driver.findElement(stateFieldIsEmpty).getText();
+        WebElement el = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(stateFieldIsEmpty)
+        );
+        return el.getText();
     }
 
     public String getZipFieldIsEmpty() {
-        return driver.findElement(zipFieldIsEmpty).getText();
+        WebElement el = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(zipFieldIsEmpty)
+        );
+        return el.getText();
     }
 
     public String getSsnFieldIsEmpty() {
-        return driver.findElement(ssnFieldIsEmpty).getText();
+        WebElement el = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(ssnFieldIsEmpty)
+        );
+        return el.getText();
     }
 
     public String getUsernameFieldIsEmpty() {
-        return driver.findElement(usernameFieldIsEmpty).getText();
+        WebElement el = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(usernameFieldIsEmpty)
+        );
+        return el.getText();
     }
 
     public String getPasswordFieldIsEmpty() {
-        return driver.findElement(passwordFieldIsEmpty).getText();
+        WebElement el = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(passwordFieldIsEmpty)
+        );
+        return el.getText();
     }
 
     public String getConfirmPasswordFieldIsEmpty() {
-        return driver.findElement(confirmPasswordFieldIsEmpty).getText();
+        WebElement el = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(confirmPasswordFieldIsEmpty)
+        );
+        return el.getText();
     }
 
     public String getPassword() {

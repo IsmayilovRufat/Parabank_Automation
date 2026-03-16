@@ -3,8 +3,12 @@ package steps;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import pages.TransferPage;
 
 public class TransferSteps {
+
+    private TransferPage transferPage;
+
 
     @When("I click \"Transfer Funds\"")
     public void i_click_transfer_funds() {
